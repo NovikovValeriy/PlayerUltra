@@ -36,49 +36,29 @@ protocol ControlButtonState {
 extension PlayButtonState: ControlButtonState {
     var iconName: String {
         switch self {
-        case .play:
-            return Constants.IconNames.playButtonIcon
-        case .pause:
-            return Constants.IconNames.pauseButtonIcon
+        case .play: return Constants.IconNames.playButtonIcon
+        case .pause: return Constants.IconNames.pauseButtonIcon
         }
     }
-
-    var iconColor: Color {
-        return Constants.ColorNames.playbackControlEnabledColor
-    }
+    var iconColor: Color { return Constants.ColorNames.playbackControlEnabledColor }
 }
 
 extension ForwardButtonState: ControlButtonState {
-    var iconName: String {
-        return Constants.IconNames.forwardButtonIcon
-    }
-
-    var iconColor: Color {
-        return Constants.ColorNames.playbackControlEnabledColor
-    }
+    var iconName: String { return Constants.IconNames.forwardButtonIcon }
+    var iconColor: Color { return Constants.ColorNames.playbackControlEnabledColor }
 }
 
 extension BackwardButtonState: ControlButtonState {
-    var iconName: String {
-        return Constants.IconNames.backwardButtonIcon
-    }
-
-    var iconColor: Color {
-        return Constants.ColorNames.playbackControlEnabledColor
-    }
+    var iconName: String { return Constants.IconNames.backwardButtonIcon }
+    var iconColor: Color { return Constants.ColorNames.playbackControlEnabledColor }
 }
 
 extension ShuffleButtonState: ControlButtonState {
-    var iconName: String {
-        return Constants.IconNames.shuffleButtonIcon
-    }
-
+    var iconName: String { return Constants.IconNames.shuffleButtonIcon }
     var iconColor: Color {
         switch self {
-        case .enabled:
-            return Constants.ColorNames.playbackControlEnabledColor
-        case .disabled:
-            return Constants.ColorNames.playbackControlDisabledColor
+        case .enabled: return Constants.ColorNames.playbackControlEnabledColor
+        case .disabled: return Constants.ColorNames.playbackControlDisabledColor
         }
     }
 }
@@ -86,19 +66,15 @@ extension ShuffleButtonState: ControlButtonState {
 extension RepeatButtonState: ControlButtonState {
     var iconName: String {
         switch self {
-        case .disabled, .repeatQueue:
-            return Constants.IconNames.repeatQueueButtonIcon
-        case .repeatTrack:
-            return Constants.IconNames.repeatTrackButtonIcon
+        case .disabled, .repeatQueue: return Constants.IconNames.repeatQueueButtonIcon
+        case .repeatTrack: return Constants.IconNames.repeatTrackButtonIcon
         }
     }
 
     var iconColor: Color {
         switch self {
-        case .repeatQueue, .repeatTrack:
-            return Constants.ColorNames.playbackControlEnabledColor
-        case .disabled:
-            return Constants.ColorNames.playbackControlDisabledColor
+        case .repeatQueue, .repeatTrack: return Constants.ColorNames.playbackControlEnabledColor
+        case .disabled: return Constants.ColorNames.playbackControlDisabledColor
         }
     }
 }
