@@ -48,6 +48,26 @@ extension PlayButtonState: ControlButtonState {
     }
 }
 
+extension ForwardButtonState: ControlButtonState {
+    var iconName: String {
+        return Constants.IconNames.forwardButtonIcon
+    }
+
+    var iconColor: Color {
+        return Constants.ColorNames.playbackControlEnabledColor
+    }
+}
+
+extension BackwardButtonState: ControlButtonState {
+    var iconName: String {
+        return Constants.IconNames.backwardButtonIcon
+    }
+
+    var iconColor: Color {
+        return Constants.ColorNames.playbackControlEnabledColor
+    }
+}
+
 extension ShuffleButtonState: ControlButtonState {
     var iconName: String {
         return Constants.IconNames.shuffleButtonIcon
@@ -112,46 +132,31 @@ struct PlaybackScreenView: View {
             }
 
             HStack {
-                PlaybackControlButton(
-                    imageName: viewModel.shuffleButtonState.iconName,
-                    imageColor: viewModel.shuffleButtonState.iconColor
-                ) {
+                PlaybackControlButton(buttonState: viewModel.shuffleButtonState) {
                     viewModel.shuffleButtonPressed()
                 }
 
                 Spacer()
 
-                PlaybackControlButton(
-                    imageName: Constants.IconNames.backwardButtonIcon,
-                    imageColor: Constants.ColorNames.playbackControlEnabledColor
-                ) {
+                PlaybackControlButton(buttonState: viewModel.backwardButtonState) {
                     viewModel.backwardButtonPressed()
                 }
 
                 Spacer()
 
-                PlaybackControlButton(
-                    imageName: viewModel.playButtonState.iconName,
-                    imageColor: viewModel.playButtonState.iconColor
-                ) {
+                PlaybackControlButton(buttonState: viewModel.playButtonState) {
                     viewModel.playButtonPressed()
                 }
 
                 Spacer()
 
-                PlaybackControlButton(
-                    imageName: Constants.IconNames.forwardButtonIcon,
-                    imageColor: Constants.ColorNames.playbackControlEnabledColor
-                ) {
+                PlaybackControlButton(buttonState: viewModel.forwardButtonState) {
                     viewModel.forwardButtonPressed()
                 }
 
                 Spacer()
 
-                PlaybackControlButton(
-                    imageName: viewModel.repeatButtonState.iconName,
-                    imageColor: viewModel.repeatButtonState.iconColor
-                ) {
+                PlaybackControlButton(buttonState: viewModel.repeatButtonState) {
                     viewModel.repeatButtonPressed()
                 }
             }
@@ -169,25 +174,24 @@ struct PlaybackScreenView: View {
                 allowedContentTypes: PUImportTypes.allowedImportTypes,
                 allowsMultipleSelection: false
             ) { result in
-
+                viewModel.importCallback(result: result)
             }
         }
     }
 }
 
 struct PlaybackControlButton: View {
-    let imageName: String
-    let imageColor: Color
+    let buttonState: ControlButtonState
     let action: () -> Void
     var body: some View {
         Button {
             action()
         } label: {
-            Image(systemName: imageName)
+            Image(systemName: buttonState.iconName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: Constants.Sizes.playbackButtonsSize, height: Constants.Sizes.playbackButtonsSize)
-                .foregroundStyle(imageColor)
+                .foregroundStyle(buttonState.iconColor)
         }
     }
 }

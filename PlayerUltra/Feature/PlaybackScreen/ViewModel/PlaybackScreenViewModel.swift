@@ -12,6 +12,14 @@ enum PlayButtonState {
     case play
 }
 
+enum ForwardButtonState {
+    case none
+}
+
+enum BackwardButtonState {
+    case none
+}
+
 enum ShuffleButtonState {
     case enabled
     case disabled
@@ -30,6 +38,7 @@ protocol PlaybackScreenViewModel {
     func forwardButtonPressed()
     func repeatButtonPressed()
     func importFilePressed()
+    func importCallback(result: Result<[URL], any Error>)
 }
 
 @Observable
@@ -37,6 +46,8 @@ class PlaybackScreenViewModelImpl: PlaybackScreenViewModel {
     var seekPointer: Float = 0.3
     var showFileImporter = false
     private(set) var playButtonState: PlayButtonState = .play
+    private(set) var forwardButtonState: ForwardButtonState = .none
+    private(set) var backwardButtonState: BackwardButtonState = .none
     private(set) var shuffleButtonState: ShuffleButtonState  = .disabled
     private(set) var repeatButtonState: RepeatButtonState = .disabled
     private(set) var trackName: String = "Unknown"
@@ -83,5 +94,14 @@ class PlaybackScreenViewModelImpl: PlaybackScreenViewModel {
 
     func importFilePressed() {
         showFileImporter = true
+    }
+
+    func importCallback(result: Result<[URL], any Error>) {
+        switch result {
+        case .success(let files):
+            print()
+        case .failure(let error):
+            print()
+        }
     }
 }
