@@ -2,7 +2,7 @@
 //  PlayerUltraApp.swift
 //  PlayerUltra
 //
-//  Created by user on 10/09/2026.
+//  Created by NovikovValeriy on 10/09/2026.
 //
 
 import SwiftUI
@@ -11,7 +11,9 @@ import SwiftUI
 struct PlayerUltraApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                PlaybackScreenView()
+            }
         }
     }
 }
